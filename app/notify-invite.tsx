@@ -31,9 +31,10 @@ export default function NotifyInviteScreen() {
   const [senderName, setSenderName] = useState("");
   const [claiming, setClaiming] = useState(false);
 
-  const doClaim = async (inviteCode: string) => {
+  const doClaim = async (inviteCode: string, fromDeepLink = false) => {
     if (!uid) {
       showToast(t("notifyInvite.tryLater"));
+      if (fromDeepLink) router.replace("/(tabs)");
       return;
     }
     setClaiming(true);
@@ -44,9 +45,12 @@ export default function NotifyInviteScreen() {
         setConnected(true);
       } else {
         showToast(t(CLAIM_ERROR_KEYS[result.reason] ?? CLAIM_ERROR_KEYS.error));
+        // 딥링크로 들어왔는데 실패하면 흰 화면에 갇히지 않도록 탭으로 이동
+        if (fromDeepLink) router.replace("/(tabs)");
       }
     } catch {
       showToast(t(CLAIM_ERROR_KEYS.error));
+      if (fromDeepLink) router.replace("/(tabs)");
     } finally {
       setClaiming(false);
     }
@@ -59,7 +63,7 @@ export default function NotifyInviteScreen() {
     claimedRef.current = true;
     const cleaned = sanitizeInviteCode(urlCode);
     setCode(cleaned);
-    doClaim(cleaned);
+    doClaim(cleaned, true);
   }, [urlCode, uid]);
 
   const handleSubmit = () => {
