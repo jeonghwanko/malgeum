@@ -109,7 +109,7 @@ export default function PredictionGameScreen() {
         "",
         `${t("share.downloadLabel")}${getDownloadUrl("challenge", { condition: bgCondition })}`,
       ].join("\n");
-      await captureAndShareWithMessage(challengeCardRef, msg);
+      await captureAndShareWithMessage(challengeCardRef, msg, "jpg");
     } catch (e) {
       logError("share", e);
     } finally {
@@ -128,7 +128,7 @@ export default function PredictionGameScreen() {
         "",
         `${t("share.downloadLabel")}${getDownloadUrl("challenge", { condition: bgCondition })}`,
       ].join("\n");
-      await captureAndShareWithMessage(challengeCardRef, msg);
+      await captureAndShareWithMessage(challengeCardRef, msg, "jpg");
     } catch (e) { logError("share", e); }
     finally { setSharing(false); }
   }, [sharing, stats.currentStreak]);

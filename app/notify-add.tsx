@@ -96,9 +96,10 @@ export default function NotifyAddScreen() {
       await Clipboard.setStringAsync(webLink);
       showToast(t("notifyAdd.linkCopied"));
     } catch { /* 무시 */ }
-    try {
-      await captureAndShareWithMessage(viewShotRef, msg);
-    } catch { /* 사용자가 취소 */ }
+    const result = await captureAndShareWithMessage(viewShotRef, msg, "png");
+    if (result === "error") {
+      showToast(t("share.shareFailed"));
+    }
   };
 
   const handleDone = () => {

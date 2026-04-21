@@ -520,6 +520,7 @@ export default {
   "share.shareWeatherMsg": "☀️ {{location}} {{temp}} — {{cond}}",
   "share.sharePersonalityMsg": "✨ 나의 날씨 성격: {{label}}",
   "share.downloadLabel": "📱 맑음 다운로드: ",
+  "share.shareFailed": "공유를 완료하지 못했어요. 잠시 후 다시 시도해주세요.",
 
   // 피드백
   "feedback.title": "오늘의 추천 평가",

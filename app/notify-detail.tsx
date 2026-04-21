@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { View, Text, StyleSheet, Alert, Pressable } from "react-native";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import ViewShot from "react-native-view-shot";
@@ -18,6 +18,7 @@ import { DEFAULT_SCHEDULES, formatScheduleTime, buildInviteWebLink, buildInviteS
 import { mapConditionToTexture } from "@/utils/weather";
 import { getTextureSource } from "@/components/weather/WeatherBackground";
 import { InviteCardPreview } from "@/components/notify/InviteCardPreview";
+import { buildPreviewCopy } from "@/services/microcopy";
 import { captureAndShareWithMessage } from "@/utils/shareCapture";
 import { t } from "@/i18n";
 
@@ -38,6 +39,16 @@ export default function NotifyDetailScreen() {
   const [schedules, setSchedules] = useState<NotifySchedule[]>(
     recipient ? [...recipient.schedules] : [...DEFAULT_SCHEDULES],
   );
+
+  const previewCopy = useMemo(() => {
+    if (!recipient || !weatherState.currentWeather) return null;
+    return buildPreviewCopy(
+      weatherState.currentWeather,
+      weatherState.hourlyForecast,
+      weatherState.airQuality,
+      recipient.nickname,
+    );
+  }, [recipient, weatherState.currentWeather, weatherState.hourlyForecast, weatherState.airQuality]);
 
   if (!recipient) {
     return (
@@ -88,9 +99,10 @@ export default function NotifyDetailScreen() {
       await Clipboard.setStringAsync(webLink);
       showToast(t("notifyAdd.linkCopied"));
     } catch { /* 무시 */ }
-    try {
-      await captureAndShareWithMessage(viewShotRef, msg);
-    } catch { /* 사용자가 취소 */ }
+    const result = await captureAndShareWithMessage(viewShotRef, msg, "png");
+    if (result === "error") {
+      showToast(t("share.shareFailed"));
+    }
   };
 
   const handleDelete = () => {
@@ -138,6 +150,7 @@ export default function NotifyDetailScreen() {
           inviteCode={recipient.inviteCode}
           senderName={senderName}
           backgroundImage={bgImage}
+          previewMessage={previewCopy?.body}
         />
       </View>
 

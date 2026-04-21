@@ -509,6 +509,7 @@ export default {
   "share.shareEmotionalMsg": "💌 Today's weather mood from Malgeum",
   "share.shareWeatherMsg": "☀️ {{location}} {{temp}} — {{cond}}",
   "share.downloadLabel": "📱 Download Malgeum: ",
+  "share.shareFailed": "Couldn't complete sharing. Please try again shortly.",
 
   // Feedback
   "feedback.title": "Rate today's tips",

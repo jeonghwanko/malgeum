@@ -98,7 +98,7 @@ export default function WidgetPreviewScreen() {
     if (sharing) return;
     setSharing(true);
     try {
-      await captureAndShare(viewShotRef);
+      await captureAndShare(viewShotRef, "jpg");
     } finally {
       setSharing(false);
     }

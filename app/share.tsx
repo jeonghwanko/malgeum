@@ -25,6 +25,7 @@ import { COLORS } from "@/constants/colors";
 import { buildFallbackBundle } from "@/constants/weather-assets";
 import { getTextureSource } from "@/components/weather/WeatherBackground";
 import { logError } from "@/utils/logger";
+import { useToast } from "@/context/ToastContext";
 import { t } from "@/i18n";
 import { logShareCreate } from "@/services/analytics";
 import { captureAndShareWithMessage } from "@/utils/shareCapture";
@@ -70,6 +71,7 @@ export default function ShareScreen() {
 function ShareContent() {
   const router = useRouter();
   const insets = useSafeAreaInsets();
+  const { showToast } = useToast();
   const viewShotRef = useRef<ViewShot>(null);
   const { state } = useWeatherContext();
   const { artStyle, isPremium } = useTheme();
@@ -217,11 +219,18 @@ function ShareContent() {
         ].join("\n");
       }
       logShareCreate(mode === "compare" ? "weather" : mode);
-      await captureAndShareWithMessage(viewShotRef, msg);
+      // ViewShot format과 mimeType 일치 필수 (카드별)
+      const shareFormat: "png" | "jpg" =
+        mode === "emotional" || mode === "compare" ? "jpg" : "png";
+      const result = await captureAndShareWithMessage(viewShotRef, msg, shareFormat);
+      if (result === "error") {
+        showToast(t("share.shareFailed"));
+      }
     } catch (e) {
       logError("share", e);
+      showToast(t("share.shareFailed"));
     }
-  }, [mode, locationName, temp, state.tempUnit, condLabel, condition, compareTarget, compareWeather, personalityProfile, emotionalTheme]);
+  }, [mode, locationName, temp, state.tempUnit, condLabel, condition, compareTarget, compareWeather, personalityProfile, emotionalTheme, showToast]);
 
   return (
     <WeatherBackground condition={condition} isNight={false}>
