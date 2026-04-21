@@ -4,6 +4,7 @@
 
 [![Google Play](https://img.shields.io/badge/Google%20Play-다운로드-3DDC84?logo=google-play&logoColor=white)](https://play.google.com/store/apps/details?id=gg.pryzm.weather)
 [![App Store](https://img.shields.io/badge/App%20Store-다운로드-000000?logo=apple&logoColor=white)](https://apps.apple.com/kr/app/%EB%A7%91%EC%9D%8C-%EB%82%B4%EA%B8%B0%EB%B6%84/id6761682299)
+[![Instagram](https://img.shields.io/badge/Instagram-@malgeum.pryzm-E4405F?logo=instagram&logoColor=white)](https://www.instagram.com/malgeum.pryzm/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 [![Expo](https://img.shields.io/badge/Expo-54-000020?logo=expo)](https://expo.dev/)
 
@@ -184,8 +185,9 @@ A. GPS 자동 위치 외에 수동으로 도시를 추가할 수 있습니다. �
 
 ## 문의
 
-- 이슈: [GitHub Issues](https://github.com/jeonghwanko/weather/issues)
+- 이슈: [GitHub Issues](https://github.com/jeonghwanko/malgeum/issues)
 - 이메일: turbo08@gmail.com
+- 인스타그램: [@malgeum.pryzm](https://www.instagram.com/malgeum.pryzm/)
 
 ---
 
