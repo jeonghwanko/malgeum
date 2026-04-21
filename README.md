@@ -65,23 +65,19 @@ AI 어시스턴트 **맑음이**에게 자연어로 날씨를 물어보세요 �
 <table>
   <tr>
     <td align="center">
-      <img src="./assets/market/android/01_home.png" width="180" alt="맑음 홈 화면 - 날씨 행동 추천 카드"/><br/>
-      <sub>홈 화면</sub>
-    </td>
-    <td align="center">
-      <img src="./assets/market/android/02_ai.png" width="180" alt="맑음이 AI 어시스턴트 날씨 채팅"/><br/>
+      <img src="./assets/market/android/chat.jpg" width="180" alt="맑음이 AI 어시스턴트 - 자연어로 알림 설정"/><br/>
       <sub>AI 맑음이</sub>
     </td>
     <td align="center">
-      <img src="./assets/market/android/03_weekly.png" width="180" alt="주간 날씨 예보 미세먼지 자외선"/><br/>
-      <sub>주간 예보</sub>
+      <img src="./assets/market/android/personality.jpg" width="180" alt="나의 날씨 성격 - 사용 패턴 분석"/><br/>
+      <sub>나의 날씨 성격</sub>
     </td>
     <td align="center">
-      <img src="./assets/market/android/04_widget.png" width="180" alt="날씨 홈화면 위젯 Android iOS"/><br/>
-      <sub>홈 위젯</sub>
+      <img src="./assets/market/android/jansori.jpg" width="180" alt="잔소리 - 가족에게 날씨 잔소리 보내기"/><br/>
+      <sub>잔소리</sub>
     </td>
     <td align="center">
-      <img src="./assets/market/android/05_theme.png" width="180" alt="반 고흐 모네 클림트 아트 테마"/><br/>
+      <img src="./assets/market/android/theme.jpg" width="180" alt="반 고흐 모네 클림트 무하 15가지 아트 테마"/><br/>
       <sub>아트 테마</sub>
     </td>
   </tr>
