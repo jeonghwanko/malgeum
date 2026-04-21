@@ -13,7 +13,7 @@ import { useToast } from "@/context/ToastContext";
 import { useWeatherContext } from "@/context/WeatherContext";
 import { useTheme } from "@/context/ThemeContext";
 import { buildInviteShareMessage, buildInviteWebLink, MAX_RECIPIENTS } from "@/types/notify";
-import { getDownloadUrl, buildPreviewCopy } from "@/services/microcopy";
+import { buildPreviewCopy } from "@/services/microcopy";
 import { mapConditionToTexture } from "@/utils/weather";
 import { getTextureSource } from "@/components/weather/WeatherBackground";
 import { InviteCardPreview } from "@/components/notify/InviteCardPreview";
@@ -139,7 +139,6 @@ export default function NotifyAddScreen() {
             inviteCode={created.inviteCode}
             senderName={created.senderName}
             backgroundImage={bgImage}
-            downloadUrl={getDownloadUrl("invite")}
             previewMessage={previewCopy?.body}
           />
 

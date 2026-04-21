@@ -1024,7 +1024,7 @@ export default {
   "inviteCard.tagline": "날씨를 보지 말고, 물어보세요",
   "inviteCard.someone": "누군가",
   "inviteCard.inviteMsg": "{{sender}}님이 {{recipient}}님에게\n날씨 잔소리를 보내고 싶어해요 ☀️",
-  "inviteCard.guide": "맑음 앱 → 잔소리 탭 → \"초대 코드를 받았나요?\"",
+  "inviteCard.guide": "맑음 앱 → 설정 → 잔소리 → \"초대 코드 입력\"",
   "inviteCard.previewLabel": "오늘의 잔소리 미리보기 ☀️",
 
   // 채팅 UI (ChatInputBar, ChatSheetHeader, ChatMessageList, ChatSheet, ChatBubble)

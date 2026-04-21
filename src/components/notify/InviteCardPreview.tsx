@@ -10,12 +10,11 @@ interface InviteCardPreviewProps {
   inviteCode: string;
   senderName: string;
   backgroundImage: any;
-  downloadUrl: string;
   previewMessage?: string;
 }
 
 export const InviteCardPreview = forwardRef<ViewShot, InviteCardPreviewProps>(
-  ({ nickname, inviteCode, senderName, backgroundImage, downloadUrl, previewMessage }, ref) => (
+  ({ nickname, inviteCode, senderName, backgroundImage, previewMessage }, ref) => (
     <ViewShot ref={ref} options={{ format: "png", quality: 1 }}>
       <ImageBackground source={backgroundImage} style={styles.card} resizeMode="cover">
         <LinearGradient
@@ -51,7 +50,6 @@ export const InviteCardPreview = forwardRef<ViewShot, InviteCardPreviewProps>(
             <Text style={styles.guide}>
               {t("inviteCard.guide")}
             </Text>
-            <Text style={styles.download}>{downloadUrl}</Text>
           </View>
         </View>
       </ImageBackground>
@@ -153,11 +151,5 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     textShadowColor: "rgba(0,0,0,0.4)",
     textShadowRadius: 4,
-  },
-  download: {
-    fontSize: 10,
-    color: "rgba(255,255,255,0.5)",
-    textAlign: "center",
-    marginTop: 8,
   },
 });

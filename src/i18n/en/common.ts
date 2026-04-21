@@ -1013,7 +1013,7 @@ export default {
   "inviteCard.tagline": "Don't check the weather, just ask",
   "inviteCard.someone": "Someone",
   "inviteCard.inviteMsg": "{{sender}} wants to send weather nags\nto {{recipient}} ☀️",
-  "inviteCard.guide": "Malgeum app → Nag tab → \"Got an invite code?\"",
+  "inviteCard.guide": "Malgeum app → Settings → Nag → \"Enter invite code\"",
   "inviteCard.previewLabel": "Today's nag preview ☀️",
 
   // Chat UI (ChatInputBar, ChatSheetHeader, ChatMessageList, ChatSheet, ChatBubble)

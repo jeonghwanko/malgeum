@@ -15,7 +15,6 @@ import { useTheme } from "@/context/ThemeContext";
 import { ScheduleEditor } from "@/components/notify/ScheduleEditor";
 import type { NotifySchedule } from "@/types/notify";
 import { DEFAULT_SCHEDULES, formatScheduleTime, buildInviteWebLink, buildInviteShareMessage } from "@/types/notify";
-import { getDownloadUrl } from "@/services/microcopy";
 import { mapConditionToTexture } from "@/utils/weather";
 import { getTextureSource } from "@/components/weather/WeatherBackground";
 import { InviteCardPreview } from "@/components/notify/InviteCardPreview";
@@ -139,7 +138,6 @@ export default function NotifyDetailScreen() {
           inviteCode={recipient.inviteCode}
           senderName={senderName}
           backgroundImage={bgImage}
-          downloadUrl={getDownloadUrl("invite")}
         />
       </View>
 
