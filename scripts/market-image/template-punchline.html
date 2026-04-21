@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @font-face {
+    font-family: "NanumPenScript";
+    src: url("{{FONT_PATH}}") format("truetype");
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    background: linear-gradient(160deg, {{BG_FROM}}, {{BG_TO}});
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  /* 배경 장식 */
+  .bg-circle-1 {
+    position: absolute;
+    top: -28vw;
+    right: -28vw;
+    width: 83vw;
+    height: 83vw;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.07);
+  }
+  .bg-circle-2 {
+    position: absolute;
+    bottom: -37vw;
+    left: -37vw;
+    width: 102vw;
+    height: 102vw;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .bg-circle-3 {
+    position: absolute;
+    top: 56vw;
+    left: -18vw;
+    width: 56vw;
+    height: 56vw;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  /* 앱 이름 — 상단 고정 */
+  .app-name {
+    position: absolute;
+    top: 10vw;
+    font-size: 4.1vw;
+    font-weight: 800;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: -0.05vw;
+  }
+
+  /* 중앙 콘텐츠 */
+  .center-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 7.4vw 16vw;
+    z-index: 1;
+  }
+
+  .emoji-big {
+    font-size: 14.8vw;
+    line-height: 1;
+    margin-bottom: 5.6vw;
+    filter: drop-shadow(0 0.7vw 3vw rgba(0,0,0,0.25));
+  }
+
+  .copy-text {
+    font-family: "NanumPenScript", sans-serif;
+    font-size: 14.1vw;
+    font-weight: 400;
+    color: {{COPY_COLOR}};
+    line-height: 1.25;
+    letter-spacing: 0px;
+    text-shadow: 0 0.6vw 3vw rgba(0,0,0,0.25);
+  }
+
+  .divider {
+    width: 7.4vw;
+    height: 0.4vw;
+    border-radius: 0.2vw;
+    background: rgba(255,255,255,0.4);
+    margin: 5.2vw auto;
+  }
+
+  .copy-sub {
+    font-size: 3.9vw;
+    font-weight: 500;
+    color: rgba(255,255,255,0.75);
+    line-height: 1.5;
+    letter-spacing: -0.05vw;
+  }
+
+  /* 하단 배지 */
+  .bottom-badge {
+    position: absolute;
+    bottom: 5vw;
+    display: flex;
+    align-items: center;
+    gap: 1.5vw;
+    background: rgba(255,255,255,0.15);
+    border: 0.15vw solid rgba(255,255,255,0.25);
+    border-radius: 6vw;
+    padding: 1.9vw 4.8vw;
+  }
+  .bottom-badge span {
+    font-size: 3.1vw;
+    font-weight: 700;
+    color: rgba(255,255,255,0.9);
+    letter-spacing: -0.05vw;
+  }
+</style>
+</head>
+<body>
+  <div class="bg-circle-1"></div>
+  <div class="bg-circle-2"></div>
+  <div class="bg-circle-3"></div>
+
+  <div class="app-name">맑음 ☀️</div>
+
+  <div class="center-area">
+    <div class="emoji-big">{{EMOJI}}</div>
+    <div class="copy-text">{{COPY}}</div>
+    <div class="divider"></div>
+    <div class="copy-sub">{{SUB}}</div>
+  </div>
+
+  <div class="bottom-badge">
+    <span>{{BADGE}}</span>
+  </div>
+</body>
+</html>

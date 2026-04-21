@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  @font-face {
+    font-family: 'NanumPen';
+    src: url('../assets/fonts/NanumPenScript-Regular.ttf') format('truetype');
+    font-weight: normal;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 1024px;
+    height: 1024px;
+    overflow: hidden;
+    font-family: 'NanumPen', sans-serif;
+  }
+
+  .icon {
+    width: 1024px;
+    height: 1024px;
+    position: relative;
+    background: linear-gradient(165deg, #1a1e3a 0%, #2d1b69 25%, #1e3a5f 50%, #0f2b4a 75%, #0a1628 100%);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* 깊은 밤하늘 노이즈 텍스처 */
+  .icon::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 120% 80% at 30% 20%, rgba(99, 102, 241, 0.15) 0%, transparent 60%),
+      radial-gradient(ellipse 100% 60% at 70% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  }
+
+  /* 태양 글로우 - 뒤 */
+  .sun-glow-outer {
+    position: absolute;
+    width: 620px;
+    height: 620px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+      rgba(255, 183, 77, 0.08) 0%,
+      rgba(255, 152, 0, 0.04) 40%,
+      transparent 70%
+    );
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .sun-glow-mid {
+    position: absolute;
+    width: 440px;
+    height: 440px;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+      rgba(255, 193, 7, 0.12) 0%,
+      rgba(255, 167, 38, 0.06) 50%,
+      transparent 75%
+    );
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  /* 태양 본체 */
+  .sun {
+    position: absolute;
+    width: 280px;
+    height: 280px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 40% 35%,
+      #FFE082 0%,
+      #FFD54F 20%,
+      #FFCA28 40%,
+      #FFB300 65%,
+      #FF8F00 100%
+    );
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -55%);
+    box-shadow:
+      0 0 60px rgba(255, 193, 7, 0.4),
+      0 0 120px rgba(255, 152, 0, 0.2),
+      0 0 200px rgba(255, 111, 0, 0.1),
+      inset -15px -15px 30px rgba(255, 111, 0, 0.3),
+      inset 10px 10px 20px rgba(255, 241, 118, 0.4);
+  }
+
+  /* 태양 하이라이트 */
+  .sun::before {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 50px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.35);
+    top: 35px;
+    left: 55px;
+    filter: blur(12px);
+    transform: rotate(-20deg);
+  }
+
+  /* 수평선 - 새벽/일출 느낌 */
+  .horizon {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 380px;
+    background: linear-gradient(to top,
+      rgba(15, 23, 42, 0.95) 0%,
+      rgba(30, 41, 59, 0.7) 25%,
+      rgba(51, 65, 85, 0.3) 50%,
+      transparent 100%
+    );
+  }
+
+  /* 수평선 위 빛 반사 */
+  .horizon-glow {
+    position: absolute;
+    bottom: 280px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 700px;
+    height: 120px;
+    background: radial-gradient(ellipse,
+      rgba(255, 183, 77, 0.15) 0%,
+      rgba(255, 152, 0, 0.05) 50%,
+      transparent 80%
+    );
+  }
+
+  /* "맑음" 타이포 */
+  .title {
+    position: absolute;
+    bottom: 155px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-family: 'NanumPen', cursive;
+    font-size: 172px;
+    font-weight: normal;
+    letter-spacing: 24px;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow:
+      0 0 40px rgba(255, 193, 7, 0.35),
+      0 0 80px rgba(255, 152, 0, 0.15),
+      0 2px 4px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+  }
+
+  /* 얇은 라인 디바이더 */
+  .divider {
+    position: absolute;
+    bottom: 145px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 260px;
+    height: 1px;
+    background: linear-gradient(to right,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      rgba(255, 193, 7, 0.4),
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    z-index: 10;
+  }
+
+  /* 서브카피 */
+  .subtitle {
+    position: absolute;
+    bottom: 105px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    font-size: 36px;
+    font-weight: 300;
+    letter-spacing: 14px;
+    color: rgba(255, 255, 255, 0.45);
+    z-index: 10;
+  }
+
+  /* 별 장식 */
+  .star {
+    position: absolute;
+    border-radius: 50%;
+    background: white;
+  }
+  .star-1 { width: 3px; height: 3px; top: 120px; left: 180px; opacity: 0.4; }
+  .star-2 { width: 2px; height: 2px; top: 80px; left: 720px; opacity: 0.3; }
+  .star-3 { width: 4px; height: 4px; top: 200px; left: 820px; opacity: 0.25; }
+  .star-4 { width: 2px; height: 2px; top: 160px; left: 400px; opacity: 0.2; }
+  .star-5 { width: 3px; height: 3px; top: 100px; left: 550px; opacity: 0.35; }
+  .star-6 { width: 2px; height: 2px; top: 250px; left: 140px; opacity: 0.15; }
+  .star-7 { width: 3px; height: 3px; top: 60px; left: 320px; opacity: 0.3; }
+</style>
+</head>
+<body>
+  <div class="icon">
+    <div class="sun-glow-outer"></div>
+    <div class="sun-glow-mid"></div>
+    <div class="sun"></div>
+    <div class="horizon-glow"></div>
+    <div class="horizon"></div>
+    <div class="title">맑음</div>
+    <div class="divider"></div>
+    <div class="subtitle">MALGEUM</div>
+    <div class="star star-1"></div>
+    <div class="star star-2"></div>
+    <div class="star star-3"></div>
+    <div class="star star-4"></div>
+    <div class="star star-5"></div>
+    <div class="star star-6"></div>
+    <div class="star star-7"></div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+node_modules/
+
+# @generated expo-cli sync-2b81b286409207a5da26e14c78851eb30d8ccbdb
+expo-env.d.ts
+# @end expo-cli
+
+# Expo
+.expo/
+dist/
+web-build/
+
+# 시크릿 / 환경변수
+.env
+.env.local
+.env.*.local
+
+# Firebase 설정 (각자 프로젝트로 교체)
+google-services.json
+GoogleService-Info.plist
+android/app/google-services.json
+
+# 서명 키
+*.keystore
+*.jks
+*.p8
+*.p12
+key.properties
+android/key.properties
+
+# Native 빌드
+ios/Pods/
+ios/build/
+android/.gradle/
+android/build/
+android/app/build/
+android/.kotlin/
+android/.cxx/
+modules/widget-bridge/android/.gradle/
+modules/widget-bridge/android/build/
+
+# 로컬 IDE / 에이전트 설정
+.vscode/
+.idea/
+.claude/
+CLAUDE.md
+.mcp.json
+
+# OS 메타데이터
+.DS_Store
+Thumbs.db
+
+# 로그
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

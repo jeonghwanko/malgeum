@@ -1,0 +1,168 @@
+{
+  "feature": {
+    "id": "feature_graphic",
+    "type": "feature",
+    "copy": "당신은\n어떤 날씨 사람?",
+    "sub": "내 행동이 만든 나만의 날씨 성격 — 맑음이 읽어드려요",
+    "screenshot": "../../assets/screenshots/personality.jpg",
+    "bgGradient": ["#1A365D", "#2B6CB0", "#63B3ED"]
+  },
+
+  "slides": [
+    {
+      "id": "01_personality",
+      "copy": "당신은\n어떤 사람?",
+      "sub": "매일 내 선택이 만든 나만의 날씨 성격",
+      "screenshot": "../../assets/screenshots/personality.jpg",
+      "bgGradient": ["#667EEA", "#4C51BF"],
+      "copyColor": "#FFFFFF"
+    },
+    {
+      "id": "02_chat",
+      "copy": "말로\n설정을 바꿔요",
+      "sub": "\"비 알림 켜줘\" — 맑음이가 바로 해드려요",
+      "screenshot": "../../assets/screenshots/chat.jpg",
+      "bgGradient": ["#5B86C8", "#2C5282"],
+      "copyColor": "#FFFFFF"
+    },
+    {
+      "id": "03_jansori",
+      "copy": "엄마의 잔소리를\n날씨로",
+      "sub": "가족에게 우산, 옷차림을 챙겨주세요",
+      "screenshot": "../../assets/screenshots/jansori.jpg",
+      "bgGradient": ["#48BB78", "#276749"],
+      "copyColor": "#FFFFFF"
+    },
+    {
+      "id": "04_theme",
+      "copy": "날씨를\n작품으로",
+      "sub": "반 고흐, 모네, 클림트… 15가지 아트 테마",
+      "screenshot": "../../assets/screenshots/theme.jpg",
+      "bgGradient": ["#ED8936", "#C05621"],
+      "copyColor": "#FFFFFF"
+    },
+    {
+      "id": "P1_personality",
+      "type": "punchline",
+      "emoji": "🔮",
+      "copy": "당신은\n어떤 사람?",
+      "sub": "매일의 선택이 만든\n나만의 날씨 성격을 읽어드려요",
+      "badge": "내 날씨 성격 보기",
+      "bgGradient": ["#667EEA", "#4C51BF"],
+      "copyColor": "#FFFFFF"
+    },
+    {
+      "id": "P2_chat",
+      "type": "punchline",
+      "emoji": "💬",
+      "copy": "말로\n설정을 바꿔요.",
+      "sub": "\"비 알림 켜줘\"\n맑음이가 바로 해드려요",
+      "badge": "맑음이와 대화하기",
+      "bgGradient": ["#5B86C8", "#2C5282"],
+      "copyColor": "#FFFFFF"
+    },
+    {
+      "id": "P3_jansori",
+      "type": "punchline",
+      "emoji": "💌",
+      "copy": "엄마의 잔소리를\n날씨로.",
+      "sub": "가족에게 우산, 옷차림을\n챙겨주세요",
+      "badge": "잔소리 보내기",
+      "bgGradient": ["#48BB78", "#276749"],
+      "copyColor": "#FFFFFF"
+    }
+  ],
+
+  "soul": [
+    {
+      "id": "soul_01_cover",
+      "type": "punchline",
+      "emoji": "🤍",
+      "copy": "AI에게\n영혼을 줄 수 있을까?",
+      "sub": "날씨 앱을 만들며 던진 질문",
+      "badge": "맑음 — 내기분",
+      "bgGradient": ["#1a1a2e", "#16213e"],
+      "copyColor": "#FFFFFF"
+    },
+    {
+      "id": "soul_02_claude",
+      "type": "punchline",
+      "emoji": "📄",
+      "copy": "Claude에는\nSOUL.md가 있다.",
+      "sub": "성격, 가치관, 말하는 방식을 정의한 문서.\n나는 거기서 힌트를 얻었다.",
+      "badge": "Anthropic · SOUL document",
+      "bgGradient": ["#0f0c29", "#302b63"],
+      "copyColor": "#FFFFFF"
+    },
+    {
+      "id": "soul_03_poetry",
+      "type": "soul",
+      "screenshot": "../../assets/textures/art/vangogh/rainy.jpg",
+      "copy": "날씨를 숫자가 아닌\n감각으로 번역하고 싶었다.",
+      "sub": "기형도의 결핍과 나태주의 온기 사이\nAI와 시집을 읽으며 만든 목소리",
+      "badge": "기형도 · 나태주",
+      "copyColor": "#FFFFFF",
+      "overlayTop": "rgba(0,0,0,0.3)",
+      "overlayMid": "rgba(0,0,0,0.25)",
+      "overlayBot": "rgba(0,0,0,0.6)",
+      "copySize": "11.5"
+    },
+    {
+      "id": "soul_04_art",
+      "type": "soul",
+      "screenshot": "../../assets/screenshots/theme.jpg",
+      "copy": "화가의 눈으로\n하늘을 봤다.",
+      "sub": "반 고흐, 모네, 클림트…\n15명의 화가, 15개의 날씨",
+      "badge": "15 Art Styles",
+      "copyColor": "#FFFFFF",
+      "overlayTop": "rgba(0,0,0,0.4)",
+      "overlayBot": "rgba(0,0,0,0.7)",
+      "copySize": "12"
+    },
+    {
+      "id": "soul_05_chat",
+      "type": "soul",
+      "screenshot": "../../assets/textures/art/monet/rainy.jpg",
+      "copy": "오후부터 하늘이\n마음을 바꿀 것 같아.\n우산 하나 챙겨가.",
+      "sub": "날씨 앱이 시처럼 말한다.",
+      "badge": "맑음이 · AI 도우미",
+      "copyColor": "#FFFFFF",
+      "overlayTop": "rgba(0,0,0,0.3)",
+      "overlayBot": "rgba(0,0,0,0.8)",
+      "copySize": "10.5"
+    },
+    {
+      "id": "soul_06_soul_md",
+      "type": "punchline",
+      "emoji": "✍️",
+      "copy": "진짜 SOUL.md를\n만들었다.",
+      "sub": "맑음이의 성격, 목소리, 금지사항을\n모두 적어 내려갔다.",
+      "badge": "docs/SOUL.md",
+      "bgGradient": ["#1a1a2e", "#4a1942"],
+      "copyColor": "#FFFFFF"
+    },
+    {
+      "id": "soul_07_home",
+      "type": "soul",
+      "screenshot": "../../assets/textures/art/klimt/sunny.jpg",
+      "copy": "맑음 — 내기분",
+      "sub": "날씨를 보지 말고, 물어보세요.",
+      "badge": "App Store 출시",
+      "copyColor": "#FFFFFF",
+      "overlayTop": "rgba(0,0,0,0.2)",
+      "overlayMid": "rgba(0,0,0,0.15)",
+      "overlayBot": "rgba(0,0,0,0.6)",
+      "copySize": "15"
+    },
+    {
+      "id": "soul_08_cta",
+      "type": "punchline",
+      "emoji": "🌤️",
+      "copy": "오늘 날씨,\n맑음이한테 물어봤어?",
+      "sub": "링크 인 바이오",
+      "badge": "지금 시작하기",
+      "bgGradient": ["#0f0c29", "#302b63", "#24243e"],
+      "copyColor": "#FFFFFF"
+    }
+  ]
+}

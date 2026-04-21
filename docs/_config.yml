@@ -1,0 +1,48 @@
+title: "맑음-내기분 : 감성 카드"
+description: "날씨를 보지 말고, 물어보세요. 오늘 뭐 입을지 맑음이 알려드려요."
+lang: ko
+theme: minima
+url: "https://example.com"
+baseurl: "/malgeum"
+
+og_image: /malgeum/assets/og-image.jpg
+
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /malgeum/assets/og-image.jpg
+
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+minima:
+  skin: auto
+
+header_pages:
+  - index.md
+  - 기능-소개.md
+  - AI-어시스턴트-맑음이.md
+  - 위젯-가이드.md
+  - 프리미엄-구독.md
+  - FAQ.md
+  - 개인정보-및-권한.md
+
+exclude:
+  - art-style-themes.md
+  - branding.md
+  - community-launch-playbook.md
+  - deployment-history.md
+  - gtm-strategy.md
+  - icon-improvement.md
+  - marketing-research.md
+  - premium-sd-textures-plan.md
+  - sd-clothing-moodboard.md
+  - sd-image-tasks.md
+  - sd-mcp-server.md
+  - SOUL.md
+  - usb-debugging-guide.md
+  - ux-research.md
+  - weather-textures.md
+  - push-wiki.sh

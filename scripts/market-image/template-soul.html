@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @font-face {
+    font-family: "NanumPenScript";
+    src: url("{{FONT_PATH}}") format("truetype");
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    font-family: -apple-system, "Apple SD Gothic Neo", "Noto Sans KR", sans-serif;
+    position: relative;
+  }
+
+  /* 공유카드 배경 이미지 — 풀블리드 */
+  .bg-image {
+    position: absolute;
+    inset: 0;
+    background-image: url("{{SCREENSHOT}}");
+    background-size: cover;
+    background-position: center;
+  }
+
+  /* 그라데이션 오버레이 */
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      {{OVERLAY_TOP}} 0%,
+      {{OVERLAY_MID}} 50%,
+      {{OVERLAY_BOT}} 100%
+    );
+  }
+
+  /* 상단 앱 이름 */
+  .app-name {
+    position: absolute;
+    top: 9vw;
+    left: 0; right: 0;
+    text-align: center;
+    font-size: 3.7vw;
+    font-weight: 700;
+    color: rgba(255,255,255,0.85);
+    letter-spacing: 0.1vw;
+    z-index: 2;
+  }
+
+  /* 중앙 펀치라인 */
+  .center-area {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0 8vw;
+    z-index: 2;
+  }
+
+  .copy-text {
+    font-family: "NanumPenScript", sans-serif;
+    font-size: {{COPY_SIZE}}vw;
+    color: {{COPY_COLOR}};
+    line-height: 1.3;
+    text-shadow: 0 0.4vw 2.5vw rgba(0,0,0,0.55);
+  }
+
+  .divider {
+    width: 6vw;
+    height: 0.35vw;
+    border-radius: 0.2vw;
+    background: rgba(255,255,255,0.45);
+    margin: 4.5vw auto;
+  }
+
+  .copy-sub {
+    font-size: 3.7vw;
+    font-weight: 400;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+    text-shadow: 0 0.3vw 1.5vw rgba(0,0,0,0.5);
+  }
+
+  /* 하단 배지 */
+  .bottom-badge {
+    position: absolute;
+    bottom: 6vw;
+    left: 0; right: 0;
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+  }
+  .badge-inner {
+    display: flex;
+    align-items: center;
+    gap: 1.5vw;
+    background: rgba(255,255,255,0.18);
+    border: 0.15vw solid rgba(255,255,255,0.3);
+    backdrop-filter: blur(8px);
+    border-radius: 6vw;
+    padding: 1.8vw 5vw;
+  }
+  .badge-inner span {
+    font-size: 3vw;
+    font-weight: 700;
+    color: rgba(255,255,255,0.95);
+    letter-spacing: -0.05vw;
+  }
+</style>
+</head>
+<body>
+  <div class="bg-image"></div>
+  <div class="overlay"></div>
+
+  <div class="app-name">맑음 — 내기분</div>
+
+  <div class="center-area">
+    <div class="copy-text">{{COPY}}</div>
+    <div class="divider"></div>
+    <div class="copy-sub">{{SUB}}</div>
+  </div>
+
+  <div class="bottom-badge">
+    <div class="badge-inner">
+      <span>{{BADGE}}</span>
+    </div>
+  </div>
+</body>
+</html>

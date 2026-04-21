@@ -1,0 +1,5 @@
+<resources>
+  <string name="app_name">Malgeum</string>
+  <string name="widget_malgeumsmall_description" translatable="false">날씨와 행동 추천</string>
+  <string name="widget_malgeummedium_description" translatable="false">날씨 상세와 행동 추천</string>
+</resources>
