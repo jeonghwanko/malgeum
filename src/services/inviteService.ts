@@ -7,6 +7,9 @@
  *   sender: loadSenderConnections() → 본인이 보낸 잔소리 목록
  *   receiver: loadReceiverConnections() → 본인이 받은 active 잔소리
  */
+import { Platform } from "react-native";
+import Constants from "expo-constants";
+import * as Notifications from "expo-notifications";
 import { logError } from "@/utils/logger";
 import type { Recipient, NotifySchedule } from "@/types/notify";
 
@@ -120,16 +123,36 @@ export type ClaimResult =
   | { success: true; senderDisplayName: string; connectionId: string }
   | { success: false; reason: "not_found" | "expired" | "already_used" | "error" };
 
+/** Expo Push Token 획득 — 권한 미허용/프로젝트ID 누락 시 null (claim은 그대로 진행) */
+async function fetchExpoPushToken(): Promise<string | null> {
+  try {
+    const { status } = await Notifications.getPermissionsAsync();
+    if (status !== "granted") return null;
+    const projectId = Constants.expoConfig?.extra?.eas?.projectId;
+    if (!projectId) return null;
+    const token = await Notifications.getExpoPushTokenAsync({ projectId });
+    return token.data ?? null;
+  } catch {
+    return null;
+  }
+}
+
 export async function claimInvite(
   inviteCode: string,
   receiverUid: string,
 ): Promise<ClaimResult> {
   try {
+    const pushToken = await fetchExpoPushToken();
+    const platform = Platform.OS === "ios" || Platform.OS === "android" ? Platform.OS : undefined;
     const res = await apiFetch(
       `/malgeum/invite/${encodeURIComponent(inviteCode)}/claim`,
       {
         method: "POST",
-        body: JSON.stringify({ receiverUid }),
+        body: JSON.stringify({
+          receiverUid,
+          ...(platform ? { platform } : {}),
+          ...(pushToken ? { pushToken } : {}),
+        }),
       },
     );
     if (!res.ok) return { success: false, reason: "error" };
