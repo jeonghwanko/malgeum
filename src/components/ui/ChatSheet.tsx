@@ -406,7 +406,7 @@ export function ChatSheet({
       }
     }
 
-    if (/고정환|허윤아|이성준|이상봉|고상원|박성모/.test(trimmed)) {
+    if (/고정환/.test(trimmed)) {
       const eggMsg: ChatMessage = { id: Crypto.randomUUID(), role: "assistant", text: "Love Forever! \u{1F495}", timestamp: Date.now() };
       setMessages((prev) => [...prev, eggMsg]);
       return;
