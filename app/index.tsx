@@ -45,10 +45,14 @@ export default function Index() {
           (state.onboardingDone ? null : await readClipboardInviteCode());
 
         if (code) {
-          // 온보딩 완료 → 바로 claim 화면
+          // 온보딩 완료 → tabs 마운트 후 claim 모달 push
+          // (replace로 바로 모달을 열면 밑에 (tabs)가 없어서 dismiss 후 흰 화면)
           if (state.onboardingDone) {
             setDeepLinkChecked(true);
-            router.replace(`/notify-invite?code=${code}` as never);
+            router.replace("/(tabs)" as never);
+            setTimeout(() => {
+              router.push(`/notify-invite?code=${code}` as never);
+            }, 50);
             return;
           }
           // 온보딩 전 → pending 저장 + 초대 온보딩 화면

@@ -36,7 +36,13 @@ export function ScreenSheet({ title, subtitle, children, footer, defaultSnap = "
   );
 
   const handleClose = useCallback(() => {
-    router.back();
+    // cold-launch 딥링크로 modal이 stack 루트인 경우 back()이 효과 없음 → 흰 화면
+    // back 가능하면 back, 아니면 tabs로 replace해서 안전하게 착지
+    if (router.canGoBack()) {
+      router.back();
+    } else {
+      router.replace("/(tabs)" as never);
+    }
   }, [router]);
 
   const renderBackdrop = useCallback(

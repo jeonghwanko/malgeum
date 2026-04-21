@@ -21,6 +21,19 @@ const CLAIM_ERROR_KEYS: Record<string, string> = {
   error: "notifyInvite.error",
 };
 
+type ClaimErrorReason = "not_found" | "expired" | "already_used" | "error";
+
+function goHomeSafely(router: ReturnType<typeof useRouter>) {
+  // transparentModal 위에서 dismiss + tabs 이동. cold-launch 스택 안정성을 위해
+  // dismissAll이 있으면 먼저 써서 모달을 정리한 뒤 tabs로 replace.
+  try {
+    (router as { dismissAll?: () => void }).dismissAll?.();
+  } catch {
+    /* no-op */
+  }
+  router.replace("/(tabs)");
+}
+
 export default function NotifyInviteScreen() {
   const router = useRouter();
   const { showToast } = useToast();
@@ -30,13 +43,15 @@ export default function NotifyInviteScreen() {
   const [connected, setConnected] = useState(false);
   const [senderName, setSenderName] = useState("");
   const [claiming, setClaiming] = useState(false);
+  const [errorReason, setErrorReason] = useState<ClaimErrorReason | null>(null);
 
   const doClaim = async (inviteCode: string, fromDeepLink = false) => {
     if (!uid) {
       showToast(t("notifyInvite.tryLater"));
-      if (fromDeepLink) router.replace("/(tabs)");
+      if (fromDeepLink) goHomeSafely(router);
       return;
     }
+    setErrorReason(null);
     setClaiming(true);
     try {
       const result: ClaimResult = await claimInvite(inviteCode, uid);
@@ -45,12 +60,14 @@ export default function NotifyInviteScreen() {
         setConnected(true);
       } else {
         showToast(t(CLAIM_ERROR_KEYS[result.reason] ?? CLAIM_ERROR_KEYS.error));
-        // 딥링크로 들어왔는데 실패하면 흰 화면에 갇히지 않도록 탭으로 이동
-        if (fromDeepLink) router.replace("/(tabs)");
+        setErrorReason(result.reason);
+        // 딥링크로 들어왔을 때는 살짝 지연 후 자동 이동 (토스트 노출 시간 확보)
+        if (fromDeepLink) setTimeout(() => goHomeSafely(router), 1200);
       }
     } catch {
       showToast(t(CLAIM_ERROR_KEYS.error));
-      if (fromDeepLink) router.replace("/(tabs)");
+      setErrorReason("error");
+      if (fromDeepLink) setTimeout(() => goHomeSafely(router), 1200);
     } finally {
       setClaiming(false);
     }
