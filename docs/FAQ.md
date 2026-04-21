@@ -126,7 +126,7 @@ OpenWeatherMap API를 사용합니다.
 ### 문의나 버그 신고는 어디에 하나요?
 
 - GitHub Issues: [github.com/jeonghwanko/weather/issues](https://github.com/jeonghwanko/weather/issues)
-- 이메일: cs@supervlabs.io
+- 이메일: turbo08@gmail.com
 
 ---
 
