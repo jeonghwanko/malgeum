@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Pressable, Linking } from "react-native";
 import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { useRouter, useLocalSearchParams } from "expo-router";
-import { Ticket, CheckCircle, Bell, MapPin } from "phosphor-react-native";
+import { Ticket, CheckCircle, Bell, MapPin, Warning } from "phosphor-react-native";
 import * as Location from "expo-location";
 import * as Notifications from "expo-notifications";
 import { COLORS } from "@/constants/colors";
@@ -45,10 +45,9 @@ export default function NotifyInviteScreen() {
   const [claiming, setClaiming] = useState(false);
   const [errorReason, setErrorReason] = useState<ClaimErrorReason | null>(null);
 
-  const doClaim = async (inviteCode: string, fromDeepLink = false) => {
+  const doClaim = async (inviteCode: string) => {
     if (!uid) {
       showToast(t("notifyInvite.tryLater"));
-      if (fromDeepLink) goHomeSafely(router);
       return;
     }
     setErrorReason(null);
@@ -61,13 +60,10 @@ export default function NotifyInviteScreen() {
       } else {
         showToast(t(CLAIM_ERROR_KEYS[result.reason] ?? CLAIM_ERROR_KEYS.error));
         setErrorReason(result.reason);
-        // 딥링크로 들어왔을 때는 살짝 지연 후 자동 이동 (토스트 노출 시간 확보)
-        if (fromDeepLink) setTimeout(() => goHomeSafely(router), 1200);
       }
     } catch {
       showToast(t(CLAIM_ERROR_KEYS.error));
       setErrorReason("error");
-      if (fromDeepLink) setTimeout(() => goHomeSafely(router), 1200);
     } finally {
       setClaiming(false);
     }
@@ -80,7 +76,7 @@ export default function NotifyInviteScreen() {
     claimedRef.current = true;
     const cleaned = sanitizeInviteCode(urlCode);
     setCode(cleaned);
-    doClaim(cleaned, true);
+    doClaim(cleaned);
   }, [urlCode, uid]);
 
   const handleSubmit = () => {
@@ -94,6 +90,21 @@ export default function NotifyInviteScreen() {
 
   if (connected) {
     return <ConnectedScreen senderName={senderName} code={code} onDone={() => router.back()} />;
+  }
+
+  // 딥링크로 들어왔는데 에러가 발생하면 명시적 에러 화면으로 전환 —
+  // 자동 타이머 redirect 대신 사용자가 버튼으로 벗어나게 (Android BottomSheet 충돌 방지)
+  if (errorReason && urlCode) {
+    return (
+      <ErrorScreen
+        reason={errorReason}
+        onGoHome={() => goHomeSafely(router)}
+        onRetry={() => {
+          claimedRef.current = false;
+          setErrorReason(null);
+        }}
+      />
+    );
   }
 
   return (
@@ -118,6 +129,34 @@ export default function NotifyInviteScreen() {
           autoCorrect={false}
           textAlign="center"
         />
+      </View>
+    </ScreenSheet>
+  );
+}
+
+// ── 에러 화면 (이미 사용 / 만료 / 없음) ──
+function ErrorScreen({
+  reason,
+  onGoHome,
+  onRetry,
+}: {
+  reason: ClaimErrorReason;
+  onGoHome: () => void;
+  onRetry: () => void;
+}) {
+  const msgKey = CLAIM_ERROR_KEYS[reason] ?? CLAIM_ERROR_KEYS.error;
+  return (
+    <ScreenSheet
+      title={t("notifyInvite.title")}
+      footer={<SaveButton label={t("common.goHome")} onPress={onGoHome} />}
+    >
+      <View style={styles.section}>
+        <Warning size={56} weight="fill" color="#F59E0B" />
+        <Text style={styles.connectedTitle}>{t(msgKey)}</Text>
+        <Text style={styles.connectedDesc}>{t("notifyInvite.errorGuide")}</Text>
+        <Pressable onPress={onRetry} style={styles.retryBtn}>
+          <Text style={styles.retryBtnText}>{t("notifyInvite.enterAnotherCode")}</Text>
+        </Pressable>
       </View>
     </ScreenSheet>
   );
@@ -217,6 +256,20 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "700",
     color: COLORS.primary,
+  },
+  retryBtn: {
+    marginTop: 16,
+    paddingVertical: 10,
+    paddingHorizontal: 18,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: "#E2E8F0",
+    backgroundColor: "#F8FAFC",
+  },
+  retryBtnText: {
+    fontSize: 13,
+    fontWeight: "600",
+    color: "#475569",
   },
 });
 
