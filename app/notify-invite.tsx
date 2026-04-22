@@ -89,7 +89,17 @@ export default function NotifyInviteScreen() {
   };
 
   if (connected) {
-    return <ConnectedScreen senderName={senderName} code={code} onDone={() => router.back()} />;
+    return (
+      <ConnectedScreen
+        senderName={senderName}
+        code={code}
+        onDone={() => {
+          // 딥링크 cold-launch 시 back할 대상이 없으면 흰 화면 → 항상 tabs로 안착
+          if (router.canGoBack()) router.back();
+          else router.replace("/(tabs)" as never);
+        }}
+      />
+    );
   }
 
   // 딥링크로 들어왔는데 에러가 발생하면 명시적 에러 화면으로 전환 —
